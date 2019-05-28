@@ -26,7 +26,7 @@ public class LdapConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.ldapAuthentication().userDnPatterns("uid={0},ou=People").groupSearchBase("ou=People")
+		auth.ldapAuthentication().userDnPatterns("uid={0},ou=people").groupSearchBase("ou=groups")
 				.contextSource(context()).passwordCompare().passwordEncoder(new LdapShaPasswordEncoder())
 				.passwordAttribute("userpassword");
 	}
@@ -43,6 +43,6 @@ public class LdapConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Bean
 	public DefaultSpringSecurityContextSource context() {
-		return new DefaultSpringSecurityContextSource(Arrays.asList("ldap://localhost:8181"), "dc=keycloak,dc=org");
+		return new DefaultSpringSecurityContextSource(Arrays.asList("ldap://localhost:8181"), "dc=memorynotfound,dc=com");
 	}
 }
